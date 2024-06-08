@@ -40,14 +40,32 @@ class _GroceryListState extends State<GroceryList> {
               itemCount: _itemsList.length,
               itemBuilder: (context, index) {
                 final item = _itemsList[index];
-                return ListTile(
-                  leading: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: ColoredBox(color: item.category.color),
+                return Dismissible(
+                  key: ValueKey(item),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) {
+                    _itemsList.removeAt(index);
+                    setState(() {});
+                  },
+                  background: const ColoredBox(
+                    color: Color.fromARGB(255, 145, 33, 51),
+                    child: Align(
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(Icons.delete),
+                      ),
+                    ),
                   ),
-                  title: Text(item.name),
-                  trailing: Text(item.quantity.toString()),
+                  child: ListTile(
+                    leading: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: ColoredBox(color: item.category.color),
+                    ),
+                    title: Text(item.name),
+                    trailing: Text(item.quantity.toString()),
+                  ),
                 );
               },
             )
