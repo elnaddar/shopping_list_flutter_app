@@ -18,4 +18,9 @@ class Category {
   final Color color;
 
   const Category(this.name, this.color);
+
+  @override
+  String toString() {
+    return "Category($name)";
+  }
 }
