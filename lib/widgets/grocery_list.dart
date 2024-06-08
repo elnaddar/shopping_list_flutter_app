@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_list_flutter_app/data/dummy_items.dart';
+import 'package:shopping_list_flutter_app/models/grocery_item.dart';
 import 'package:shopping_list_flutter_app/widgets/new_item.dart';
 
 class GroceryList extends StatefulWidget {
@@ -10,9 +10,21 @@ class GroceryList extends StatefulWidget {
 }
 
 class _GroceryListState extends State<GroceryList> {
-  void _addItem() => Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const NewItem(),
-      ));
+  final List<GroceryItem> _itemsList = [];
+  void _addItem() async {
+    final newItem =
+        await Navigator.of(context).push<GroceryItem>(MaterialPageRoute(
+      builder: (context) => const NewItem(),
+    ));
+
+    if (newItem == null) {
+      return;
+    }
+
+    setState(() {
+      _itemsList.add(newItem);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +35,23 @@ class _GroceryListState extends State<GroceryList> {
           IconButton(onPressed: _addItem, icon: const Icon(Icons.add)),
         ],
       ),
-      body: ListView.builder(
-        itemCount: groceryItems.length,
-        itemBuilder: (context, index) {
-          final item = groceryItems[index];
-          return ListTile(
-            leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: ColoredBox(color: item.category.color),
-            ),
-            title: Text(item.name),
-            trailing: Text(item.quantity.toString()),
-          );
-        },
-      ),
+      body: _itemsList.isNotEmpty
+          ? ListView.builder(
+              itemCount: _itemsList.length,
+              itemBuilder: (context, index) {
+                final item = _itemsList[index];
+                return ListTile(
+                  leading: SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: ColoredBox(color: item.category.color),
+                  ),
+                  title: Text(item.name),
+                  trailing: Text(item.quantity.toString()),
+                );
+              },
+            )
+          : const Center(child: Text("No Items in the list, try to add some.")),
     );
   }
 }
