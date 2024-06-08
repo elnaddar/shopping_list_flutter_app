@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shopping_list_flutter_app/data/categories.dart';
 
@@ -28,6 +29,14 @@ class _NewItemState extends State<NewItem> {
                   border: OutlineInputBorder(),
                   label: Text("Name"),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.trim().isEmpty) {
+                    return "This field is required and cannot be empty or be only white spaces.";
+                  } else if (value.trim().length <= 1) {
+                    return "This field must have atleast 2 characters.";
+                  }
+                  return null;
+                },
               ),
               Row(
                 children: [
@@ -39,6 +48,19 @@ class _NewItemState extends State<NewItem> {
                         label: Text("Quantity"),
                       ),
                       initialValue: '1',
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            value.trim().isEmpty ||
+                            int.tryParse(value) == null) {
+                          return "This field is required and cannot be empty, be only white spaces, or have any character.";
+                        } else if (int.tryParse(value)! <= 0) {
+                          return "Quantity must be 1 or more.";
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   const SizedBox(
