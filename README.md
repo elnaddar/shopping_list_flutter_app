@@ -58,27 +58,17 @@ The Grocery List Flutter App allows users to manage their grocery items convenie
 ## Screenshots
 
 ### Main Screen
-![Main Screen - Empty](screenshots/main_screen_empty.png)
-*Main Screen when no items are present.*
 
-![Main Screen - One Item](screenshots/main_screen_one_item.png)
-*Main Screen displaying one grocery item.*
-
-![Main Screen - Dismiss](screenshots/main_screen_dismiss.png)
-*Main Screen showing the dismiss action.*
+| Main Screen - Empty | Main Screen - One Item | Main Screen - Dismiss |
+|---------------------|------------------------|-----------------------|
+| <img src="screenshots/main_screen_empty.png" alt="Main Screen - Empty" width="200"/> | <img src="screenshots/main_screen_one_item.png" alt="Main Screen - One Item" width="200"/> | <img src="screenshots/main_screen_dismiss.png" alt="Main Screen - Dismiss" width="200"/> |
 
 ### Add Item Screen
-![Add Item Screen](screenshots/add_item_screen.png)
-*Form for adding a new item.*
 
-![Add Item Screen - Dropdown](screenshots/add_item_screen_dropdown.png)
-*Dropdown menu for selecting the category.*
+| Add Item Screen | Add Item Screen - Dropdown | Add Item Screen - Validation 1 | Add Item Screen - Validation 2 |
+|-----------------|----------------------------|-------------------------------|-------------------------------|
+| <img src="screenshots/add_item_screen.png" alt="Add Item Screen" width="200"/> | <img src="screenshots/add_item_screen_dropdown.png" alt="Add Item Screen - Dropdown" width="200"/> | <img src="screenshots/add_item_screen_validation1.png" alt="Add Item Screen - Validation 1" width="200"/> | <img src="screenshots/add_item_screen_validation2.png" alt="Add Item Screen - Validation 2" width="200"/> |
 
-![Add Item Screen - Validation 1](screenshots/add_item_screen_validation1.png)
-*Validation message for the name field.*
-
-![Add Item Screen - Validation 2](screenshots/add_item_screen_validation2.png)
-*Validation message for the quantity field.*
 
 ## Video Demo
 
